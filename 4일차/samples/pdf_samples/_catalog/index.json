@@ -1,0 +1,130 @@
+{
+  "documents": [
+    {
+      "pdf_name": "학칙.pdf",
+      "summary_file": "학칙.summary.txt",
+      "category": "규정",
+      "keywords": [
+        "학칙",
+        "석사",
+        "박사",
+        "수업연한",
+        "재학연한",
+        "휴학",
+        "논문",
+        "연세대",
+        "대학원"
+      ],
+      "folder": "규정_학칙"
+    },
+    {
+      "pdf_name": "보도자료.pdf",
+      "summary_file": "보도자료.summary.txt",
+      "category": "보도자료",
+      "keywords": [
+        "SK하이닉스",
+        "보도자료",
+        "경영실적",
+        "매출",
+        "영업이익",
+        "2026",
+        "1분기",
+        "HBM",
+        "D램"
+      ],
+      "folder": "보도자료_SK하이닉스"
+    },
+    {
+      "pdf_name": "A survey on large language model based autonomous agents.pdf",
+      "summary_file": "A_survey_on_large_language_model_based_autonomous.summary.txt",
+      "category": "논문",
+      "keywords": [
+        "자율 에이전트",
+        "대형 언어 모델",
+        "인간 수준의 지능"
+      ],
+      "folder": "논문_자율_에이전트"
+    },
+    {
+      "pdf_name": "data2vec.pdf",
+      "summary_file": "data2vec.summary.txt",
+      "category": "논문",
+      "keywords": [
+        "data2vec",
+        "self-supervised",
+        "speech",
+        "vision",
+        "language"
+      ],
+      "folder": "논문_멀티모달"
+    },
+    {
+      "pdf_name": "Physics-Guided Deep Learning.pdf",
+      "summary_file": "Physics-Guided_Deep_Learning.summary.txt",
+      "category": "논문",
+      "keywords": [
+        "physics-guided",
+        "deep learning",
+        "dynamical systems",
+        "물리"
+      ],
+      "folder": "논문_물리_딥러닝"
+    },
+    {
+      "pdf_name": "supervised-contrastive-learning-Paper.pdf",
+      "summary_file": "supervised-contrastive-learning-Paper.summary.txt",
+      "category": "논문",
+      "keywords": [
+        "대조 학습",
+        "감독 학습",
+        "이미지 분류",
+        "손실 함수",
+        "ResNet"
+      ],
+      "folder": "논문_대조_학습"
+    },
+    {
+      "pdf_name": "NeurIPS-2023-analyzing-vision-transformers-for-image-classification-in-class-embedding-space-Paper-Conference.pdf",
+      "summary_file": "NeurIPS-2023-analyzing-vision-transformers-for-ima.summary.txt",
+      "category": "논문",
+      "keywords": [
+        "Vision Transformers",
+        "이미지 분류",
+        "범주적 표현",
+        "역설계",
+        "주의 메커니즘"
+      ],
+      "folder": "논문_비전_딥러닝"
+    },
+    {
+      "pdf_name": "보도자료.pdf",
+      "summary_file": "보도자료.summary.txt",
+      "category": "보도자료",
+      "keywords": [
+        "SK 하이닉스",
+        "2026년 1분기",
+        "경영실적",
+        "매출",
+        "영업이익",
+        "AI 수요",
+        "D램",
+        "낸드"
+      ]
+    },
+    {
+      "pdf_name": "학칙.pdf",
+      "summary_file": "학칙.summary.txt",
+      "category": "규정",
+      "keywords": [
+        "대학원",
+        "학칙",
+        "입학",
+        "학위",
+        "수업",
+        "연구",
+        "등록",
+        "제적"
+      ]
+    }
+  ]
+}

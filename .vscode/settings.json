@@ -1,0 +1,4 @@
+{
+  "python.defaultInterpreterPath": "/opt/homebrew/Caskroom/miniconda/base/bin/python",
+  "python.terminal.activateEnvironment": false
+}

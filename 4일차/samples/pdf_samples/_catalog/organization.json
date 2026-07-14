@@ -1,0 +1,55 @@
+{
+  "groups": [
+    {
+      "folder_name": "규정_학칙",
+      "reason": "대학원 학칙 관련 문서",
+      "pdf_names": [
+        "학칙.pdf",
+        "학칙.pdf"
+      ]
+    },
+    {
+      "folder_name": "보도자료_SK하이닉스",
+      "reason": "SK 하이닉스의 경영실적 관련 보도자료",
+      "pdf_names": [
+        "보도자료.pdf",
+        "보도자료.pdf"
+      ]
+    },
+    {
+      "folder_name": "논문_자율_에이전트",
+      "reason": "대형 언어 모델 기반 자율 에이전트 관련 논문",
+      "pdf_names": [
+        "A survey on large language model based autonomous agents.pdf"
+      ]
+    },
+    {
+      "folder_name": "논문_멀티모달",
+      "reason": "음성, 비전, 언어의 self-supervised 학습 관련 논문",
+      "pdf_names": [
+        "data2vec.pdf"
+      ]
+    },
+    {
+      "folder_name": "논문_물리_딥러닝",
+      "reason": "물리 지식을 딥러닝에 통합한 방법론 관련 논문",
+      "pdf_names": [
+        "Physics-Guided Deep Learning.pdf"
+      ]
+    },
+    {
+      "folder_name": "논문_대조_학습",
+      "reason": "감독된 대조 학습 관련 논문",
+      "pdf_names": [
+        "supervised-contrastive-learning-Paper.pdf"
+      ]
+    },
+    {
+      "folder_name": "논문_비전_딥러닝",
+      "reason": "Vision Transformers의 이미지 분류 관련 논문",
+      "pdf_names": [
+        "NeurIPS-2023-analyzing-vision-transformers-for-image-classification-in-class-embedding-space-Paper-Conference.pdf"
+      ]
+    }
+  ]
+}
