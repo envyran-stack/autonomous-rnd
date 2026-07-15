@@ -17,6 +17,7 @@ DEFAULT_DATA: dict[str, Any] = {
     "body_metric_fields": [dict(field) for field in DEFAULT_BODY_METRIC_FIELDS],
     "body_metrics": [],
     "workouts": [],
+    "events": [],
 }
 
 
@@ -35,7 +36,7 @@ def _new_id() -> str:
 
 def _ensure_record_ids(data: dict[str, Any]) -> bool:
     changed = False
-    for key in ("body_metrics", "workouts"):
+    for key in ("body_metrics", "workouts", "events"):
         for entry in data.get(key, []):
             if not entry.get("id"):
                 entry["id"] = _new_id()
@@ -55,6 +56,9 @@ def load_data() -> dict[str, Any]:
     with DATA_FILE.open(encoding="utf-8") as f:
         data = json.load(f)
     changed = _ensure_body_metric_fields(data)
+    if "events" not in data:
+        data["events"] = []
+        changed = True
     if _ensure_record_ids(data):
         changed = True
     if changed:
@@ -263,6 +267,83 @@ def delete_workout(record_id: str) -> bool:
     return True
 
 
+def add_event(
+    title: str,
+    start_date: str | None = None,
+    end_date: str | None = None,
+    note: str = "",
+) -> dict[str, Any]:
+    title = title.strip()
+    if not title:
+        raise ValueError("이벤트 제목을 입력해 주세요.")
+
+    data = load_data()
+    start = parse_date(start_date)
+    end = parse_date(end_date) if end_date else start
+    if end < start:
+        start, end = end, start
+
+    entry = {
+        "id": _new_id(),
+        "title": title,
+        "start_date": start,
+        "end_date": end,
+        "note": note.strip(),
+    }
+    data.setdefault("events", []).append(entry)
+    data["events"].sort(key=lambda x: x["start_date"])
+    save_data(data)
+    return entry
+
+
+def update_event(
+    record_id: str,
+    title: str,
+    start_date: str | None = None,
+    end_date: str | None = None,
+    note: str = "",
+) -> dict[str, Any] | None:
+    data = load_data()
+    events = data.setdefault("events", [])
+    idx = _find_index(events, record_id)
+    if idx is None:
+        return None
+
+    title = title.strip()
+    if not title:
+        raise ValueError("이벤트 제목을 입력해 주세요.")
+
+    entry = events[idx]
+    start = parse_date(start_date) if start_date else entry["start_date"]
+    end = parse_date(end_date) if end_date else start
+    if end < start:
+        start, end = end, start
+
+    entry["title"] = title
+    entry["start_date"] = start
+    entry["end_date"] = end
+    entry["note"] = note.strip()
+    events.sort(key=lambda x: x["start_date"])
+    save_data(data)
+    return entry
+
+
+def delete_event(record_id: str) -> bool:
+    data = load_data()
+    events = data.setdefault("events", [])
+    idx = _find_index(events, record_id)
+    if idx is None:
+        return False
+    events.pop(idx)
+    save_data(data)
+    return True
+
+
+def get_events() -> list[dict[str, Any]]:
+    data = load_data()
+    return list(data.get("events", []))
+
+
 def get_records_within_days(days: int = 30) -> dict[str, list]:
     return get_records_filtered(days=days)
 
@@ -299,6 +380,13 @@ def get_records_filtered(
         def _within(entry: dict) -> bool:
             entry_dt = _entry_date(entry)
             return entry_dt is not None and entry_dt.toordinal() >= cutoff
+
+        def _event_overlaps(entry: dict) -> bool:
+            try:
+                ev_end = date.fromisoformat(entry.get("end_date") or entry["start_date"])
+            except (KeyError, ValueError):
+                return False
+            return ev_end.toordinal() >= cutoff
     else:
 
         def _within(entry: dict) -> bool:
@@ -311,7 +399,20 @@ def get_records_filtered(
                 return False
             return True
 
+        def _event_overlaps(entry: dict) -> bool:
+            try:
+                ev_start = date.fromisoformat(entry["start_date"])
+                ev_end = date.fromisoformat(entry.get("end_date") or entry["start_date"])
+            except (KeyError, ValueError):
+                return False
+            if start and ev_end < start:
+                return False
+            if end and ev_start > end:
+                return False
+            return True
+
     return {
         "body_metrics": [e for e in data["body_metrics"] if _within(e)],
         "workouts": [e for e in data["workouts"] if _within(e)],
+        "events": [e for e in data.get("events", []) if _event_overlaps(e)],
     }
